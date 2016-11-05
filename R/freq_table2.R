@@ -17,6 +17,7 @@
 #' @return returns a list containing frequency tables split by col1_string with counts and rates of
 #'         col2_string.
 #' @export
+#' @importFrom dplyr "%>%"
 #'
 #' @examples
 #' df <- data_frame(gender = sample(c('m','f'), 200, replace = TRUE),
@@ -31,10 +32,10 @@
 #' ethnicity_by_gender$asian
 freq_table2 <- function(df_string, col1_string, col2_string){
   result <- with(get(df_string), xtabs(~get(col1_string) + get(col2_string))) %>%
-    as_data_frame(.) %>%
-    group_by(get.col1_string.) %>%
-    mutate(Percentage = round(n * 100 / sum(n), 1)) %>%
-    arrange(get.col1_string.) %>%
+    dplyr::as_data_frame(.) %>%
+    dplyr::group_by(get.col1_string.) %>%
+    dplyr::mutate(Percentage = round(n * 100 / sum(n), 1)) %>%
+    dplyr::arrange(get.col1_string.) %>%
     split(.$get.col1_string.)
 
   for (n in 1:length(result)) {

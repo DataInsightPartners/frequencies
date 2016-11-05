@@ -8,6 +8,7 @@
 #'
 #' @return a tibble containing the counts and percentages of each value from the provided data
 #' @export
+#' @importFrom dplyr "%>%"
 #'
 #' @examples
 #' tbl <- data_frame(numbers = sample(1:10, 200, replace = TRUE),
@@ -16,14 +17,14 @@
 #' View(freq_table('tbl', 'letters'))
 freq_table <- function(data_frame_string, column_string) {
 
-  result <- count_(get(data_frame_string), column_string) %>%
-              mutate(total = sum(n)) %>%
-              group_by_(column_string) %>%
-              mutate(Percentage = round(n * 100 / total, 1)) %>%
-              select_(column_string,
+  result <- dplyr::count_(get(data_frame_string), column_string) %>%
+              dplyr::mutate(total = sum(n)) %>%
+              dplyr::group_by_(column_string) %>%
+              dplyr::mutate(Percentage = round(n * 100 / total, 1)) %>%
+              dplyr::select_(column_string,
                       Count = 'n',
                       'Percentage')
-  return(tibble(result))
+  return(tibble::tibble(result))
  }
 
 

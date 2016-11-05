@@ -36,6 +36,7 @@ df <- data_frame(gender = sample(c('m','f'), 200, replace = TRUE),
 freq_table2('df', 'gender', 'ethnicity')
 gender_by_ethnicity <- freq_table2('df', 'gender', 'ethnicity')
 gender_by_ethnictiy$m
+freq_table2('df', 'gender', 'ethnicity')$m
 freq_table2('df', 'ethnicity', 'gender')
 ethnicity_by_gender <- freq_table2('df', 'ethnicity', 'gender')
 ethnicity_by_gender$asian
