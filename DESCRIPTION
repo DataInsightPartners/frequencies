@@ -1,0 +1,14 @@
+Package: frequencies
+Type: Package
+Title: Create frequency tables with counts and rates.
+Version: 0.1.0
+Author: Nathan Trenholm
+Maintainer: Nathan Trenholm <nathant23@gmail.com>
+Description: These functions create frequency tables which display both counts
+    and rates.
+Imports:
+  dplyr,
+  tibble
+License: What license is it under?
+LazyData: TRUE
+RoxygenNote: 5.0.1
