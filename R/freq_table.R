@@ -1,7 +1,7 @@
 #' freq_table
 #'
-#' freq_table returns a tibble (trimmed down version of data.frame) that is a frequency table with
-#'   counts and percentages of values from the provided data frame and column.
+#' freq_table returns a frequency table with counts and percentages of values
+#'   from the provided data frame and column.
 #'
 #' @param data_frame_string a string of the name of a data frame
 #' @param column_string a string of the column to be aggregated
@@ -24,7 +24,7 @@ freq_table <- function(data_frame_string, column_string) {
               dplyr::select_(column_string,
                       Count = 'n',
                       'Percentage')
-  return(tibble::tibble(result))
+  return(result)
  }
 
 

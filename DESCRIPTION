@@ -7,8 +7,7 @@ Maintainer: Nathan Trenholm <nathant23@gmail.com>
 Description: These functions create frequency tables which display both counts
     and rates.
 Imports:
-  dplyr,
-  tibble
+  dplyr
 License: What license is it under?
 LazyData: TRUE
 RoxygenNote: 5.0.1

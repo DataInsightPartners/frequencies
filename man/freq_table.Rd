@@ -15,8 +15,8 @@ freq_table(data_frame_string, column_string)
 a tibble containing the counts and percentages of each value from the provided data
 }
 \description{
-freq_table returns a tibble (trimmed down version of data.frame) that is a frequency table with
-  counts and percentages of values from the provided data frame and column.
+freq_table returns a frequency table with counts and percentages of values
+  from the provided data frame and column.
 }
 \examples{
 tbl <- data_frame(numbers = sample(1:10, 200, replace = TRUE),
