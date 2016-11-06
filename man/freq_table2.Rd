@@ -30,7 +30,7 @@ If col1 was ethnicity and col2 was gender you would get the count and rate of as
   male and female.
 }
 \examples{
-df <- data_frame(gender = sample(c('m','f'), 200, replace = TRUE),
+df <- data.frame(gender = sample(c('m','f'), 200, replace = TRUE),
                  ethnicity = sample(c('african american', 'asian', 'caucasian', 'hispanic', 'other'),
                                    200, replace = TRUE))
 freq_table2('df', 'gender', 'ethnicity')

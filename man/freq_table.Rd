@@ -19,7 +19,7 @@ freq_table returns a frequency table with counts and percentages of values
   from the provided data frame and column.
 }
 \examples{
-tbl <- data_frame(numbers = sample(1:10, 200, replace = TRUE),
+tbl <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
                   letters = sample(letters, 200, replace = TRUE))
 freq_table('tbl', 'numbers')
 View(freq_table('tbl', 'letters'))
