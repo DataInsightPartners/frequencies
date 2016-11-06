@@ -10,9 +10,9 @@
 #'   If col1 was ethnicity and col2 was gender you would get the count and rate of asians that are
 #'   male and female.
 #'
-#' @param df_string a string of the name of a data frame
-#' @param col1_string a string of the column name to be aggregated at the higher level.
-#' @param col2_string a string of the column name to be aggregated within col1_string.
+#' @param df_string   a string of the name of a data frame
+#' @param col1_string   a string of the column name to be aggregated at the higher level.
+#' @param col2_string   a string of the column name to be aggregated within col1_string.
 #'
 #' @return returns a list containing frequency tables split by col1_string with counts and rates of
 #'         col2_string.
@@ -20,12 +20,12 @@
 #' @importFrom dplyr "%>%"
 #'
 #' @examples
-#' df <- data_frame(gender = sample(c('m','f'), 200, replace = TRUE),
+#' df <- data.frame(gender = sample(c('m','f'), 200, replace = TRUE),
 #'                  ethnicity = sample(c('african american', 'asian', 'caucasian', 'hispanic', 'other'),
 #'                                    200, replace = TRUE))
 #' freq_table2('df', 'gender', 'ethnicity')
 #' gender_by_ethnicity <- freq_table2('df', 'gender', 'ethnicity')
-#' gender_by_ethnictiy$m
+#' gender_by_ethnicity$m
 #' freq_table2('df', 'gender', 'ethnicity')$m
 #' freq_table2('df', 'ethnicity', 'gender')
 #' ethnicity_by_gender <- freq_table2('df', 'ethnicity', 'gender')
