@@ -22,7 +22,8 @@
 #' @examples
 #' df <- data.frame(gender = sample(c('m','f'), 200, replace = TRUE),
 #'                  ethnicity = sample(c('african american', 'asian', 'caucasian', 'hispanic', 'other'),
-#'                                    200, replace = TRUE))
+#'                                    200, replace = TRUE),
+#'                  stringsAsFactors = FALSE)
 #' freq_table2('df', 'gender', 'ethnicity')
 #' gender_by_ethnicity <- freq_table2('df', 'gender', 'ethnicity')
 #' gender_by_ethnicity$m
@@ -31,6 +32,7 @@
 #' ethnicity_by_gender <- freq_table2('df', 'ethnicity', 'gender')
 #' ethnicity_by_gender$asian
 freq_table2 <- function(df_string, col1_string, col2_string){
+
   result <- with(get(df_string), xtabs(~get(col1_string) + get(col2_string))) %>%
     dplyr::as_data_frame(.) %>%
     dplyr::group_by(get.col1_string.) %>%

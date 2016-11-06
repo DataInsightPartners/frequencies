@@ -4,15 +4,20 @@
 \alias{freq_table}
 \title{freq_table}
 \usage{
-freq_table(data_frame_string, column_string)
+freq_table(data_frame_string, column_string, sort_by_count = FALSE,
+  total_row = TRUE)
 }
 \arguments{
 \item{data_frame_string}{a string of the name of a data frame}
 
 \item{column_string}{a string of the column to be aggregated}
+
+\item{sort_by_count}{a boolean value that determines if the output will be sorted by count or name}
+
+\item{total_row}{a boolean value that determines if the output will have a summary row appended}
 }
 \value{
-a tibble containing the counts and percentages of each value from the provided data
+a data_frame containing the counts and percentages of each value from the provided data
 }
 \description{
 freq_table returns a frequency table with counts and percentages of values
@@ -20,8 +25,10 @@ freq_table returns a frequency table with counts and percentages of values
 }
 \examples{
 tbl <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
-                  letters = sample(letters, 200, replace = TRUE))
+                  letters = sample(letters, 200, replace = TRUE),
+                  stringsAsFactors = FALSE)
 freq_table('tbl', 'numbers')
 View(freq_table('tbl', 'letters'))
+View(freq_table('tbl', 'letters', sort_by_count = TRUE, total_row = FALSE))
 }
 
