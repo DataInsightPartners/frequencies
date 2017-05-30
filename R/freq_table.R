@@ -14,8 +14,11 @@
 #'
 #' @examples
 #' tbl <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
-#'                   letters = sample(letters, 200, replace = TRUE),
-#'                   stringsAsFactors = FALSE)
+#'   letters = sample(letters, 200, replace = TRUE),
+#'   dates = sample(seq(as.Date('1999/10/01'), as.Date('2000/01/01'), by="day"), 200, replace = TRUE),
+#'   logicals = sample(c(TRUE, FALSE), 200, replace = TRUE),
+#'   stringsAsFactors = FALSE)
+#'
 #' freq_table('tbl', 'numbers')
 #' View(freq_table('tbl', 'letters'))
 #' View(freq_table('tbl', 'letters', sort_by_count = TRUE, total_row = FALSE))
@@ -38,7 +41,10 @@ freq_table <- function(data_frame_string, column_string, sort_by_count = FALSE, 
 
 
   if (!is.logical(total_row)) total_row <- TRUE
-  if (total_row) result <- rbind.data.frame(result,c('Total', sum(result$Count), 100, 100))
+  if (total_row) {
+    result[,1] <- lapply(result[,1], as.character)
+    result <- rbind.data.frame(result,c('Total', sum(result$Count), 100, 100))
+  }
 
   return(result)
  }

@@ -42,4 +42,3 @@ freq_table2('df', 'ethnicity', 'gender')
 ethnicity_by_gender <- freq_table2('df', 'ethnicity', 'gender')
 ethnicity_by_gender$asian
 }
-
