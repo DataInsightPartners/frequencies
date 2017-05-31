@@ -22,7 +22,18 @@
 #' freq_table('tbl', 'numbers')
 #' View(freq_table('tbl', 'letters'))
 #' View(freq_table('tbl', 'letters', sort_by_count = TRUE, total_row = FALSE))
+
 freq_table <- function(data_frame_string, column_string, sort_by_count = FALSE, total_row = TRUE) {
+
+  # Check validity of arguments.
+  if (typeof(data_frame_string) != 'character') return(warning('data_frame_string needs to be in quotes'))
+  if (!exists(data_frame_string))               return(warning('Data frame referenced does not exist.'))
+  if (typeof(column_string) != 'character')     return(warning('column_string needs to be in quotes'))
+  check <- get(data_frame_string)
+  if (length(check[[column_string]]) == 0)      return(warning('Vector contained no data.'))
+  if (!(typeof(check[[column_string]]) %in% c('logical', 'integer', 'double','character'))) return(warning('Vector not of acceptable data type.'))
+
+
 
   if (!is.logical(sort_by_count)) sort_by_count <- TRUE
   sort_by <- ifelse(sort_by_count, 'desc(n)', column_string)
