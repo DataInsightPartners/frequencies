@@ -25,13 +25,28 @@
 
 freq_table <- function(data_frame_string, column_string, sort_by_count = FALSE, total_row = TRUE) {
 
-  # Check validity of arguments.
-  if (typeof(data_frame_string) != 'character') return(warning('data_frame_string needs to be in quotes'))
-  if (!exists(data_frame_string))               return(warning('Data frame referenced does not exist.'))
-  if (typeof(column_string) != 'character')     return(warning('column_string needs to be in quotes'))
+  # Check validity of data frame argument. The argument needs to be a string and the data frame needs to exist.
+  tryCatch({
+    if (typeof(data_frame_string) != 'character') return(stop('data_frame_string needs to be in quotes'))
+  }, error = function(e){
+    stop('data_frame_string needs to be in quotes')
+  }
+  )
+  #if (typeof(data_frame_string) != 'character') return(stop('data_frame_string needs to be in quotes'))
+  if (!exists(data_frame_string))               return(stop('Data frame referenced does not exist.'))
+
+  # Check validity of column string argument.
+  # The argument needs to be a string, the column needs to contain data / exist, and the data needs
+  # to be of data type logical, integer, double, or character.
+  tryCatch({
+    if (typeof(column_string) != 'character') return(stop('column_string needs to be in quotes'))
+      }, error = function(e){
+        stop('column_string needs to be in quotes')
+      }
+  )
   check <- get(data_frame_string)
-  if (length(check[[column_string]]) == 0)      return(warning('Vector contained no data.'))
-  if (!(typeof(check[[column_string]]) %in% c('logical', 'integer', 'double','character'))) return(warning('Vector not of acceptable data type.'))
+  if (length(check[[column_string]]) == 0) return(stop('Column contained no data / does not exist.'))
+  if (!(typeof(check[[column_string]]) %in% c('logical', 'integer', 'double','character'))) return(stop('Vector not of acceptable data type.'))
 
 
 
