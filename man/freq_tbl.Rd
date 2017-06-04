@@ -18,7 +18,7 @@ a data_frame containing the counts and percentages of each value from the provid
 }
 \description{
 freq_tbl returns a frequency table with counts and percentages of values
-  from an atomic vector of type character, integer, double, or logical.
+  from an atomic vector of type character, integer, double, or logical
 }
 \examples{
 numbers <- numbers = sample(1:10, 200, replace = TRUE)

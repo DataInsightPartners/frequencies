@@ -3,4 +3,5 @@
 export(freq_table)
 export(freq_table2)
 export(freq_tbl)
+export(freq_tbl2)
 importFrom(dplyr,"%>%")
