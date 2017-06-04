@@ -1,7 +1,7 @@
 #' freq_tbl
 #'
 #' freq_tbl returns a frequency table with counts and percentages of values
-#'   from an atomic vector of type character, integer, double, or logical.
+#'   from an atomic vector of type character, integer, double, or logical
 #'
 #' @param data_vector   an atomic vector of type character, integer, double, or logical
 #' @param sort_by_count   a boolean value that determines if the output will be sorted by count or name
@@ -26,7 +26,6 @@
 #' freq_tbl(mtcars$cyl)
 
 freq_tbl <- function(data_vector, sort_by_count = FALSE, total_row = TRUE) {
-
 
 
   # Check validity of data_vector argument. The argument needs to be a string and the data frame needs to exist.
