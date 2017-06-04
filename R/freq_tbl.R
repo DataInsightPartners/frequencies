@@ -30,9 +30,9 @@ freq_tbl <- function(data_vector, sort_by_count = FALSE, total_row = TRUE) {
 
 
   # Check validity of data_vector argument. The argument needs to be a string and the data frame needs to exist.
-  if (!is.atomic(data_vector)) return(stop('Function requires an atomic vector.'))
+  if (!is.atomic(data_vector)) return(stop('freq_tbl requires an atomic vector.'))
 
-  if (!(typeof(data_vector) %in% c('logical', 'integer', 'double','character'))){
+  if (!(typeof(data_vector) %in% c('logical', 'integer', 'double','character'))) {
     return(stop('Vector not of acceptable data type. Needs to be of type logical, integer, double, or character.'))
   }
 
@@ -43,7 +43,7 @@ freq_tbl <- function(data_vector, sort_by_count = FALSE, total_row = TRUE) {
   if (!is.logical(sort_by_count)) sort_by_count <- TRUE
   sort_by <- ifelse(sort_by_count, 'desc(n)', 'data')
 
-  df <- data.frame(data = data_vector)
+  df <- data.frame(data = data_vector, stringsAsFactors = FALSE)
 
   result <- dplyr::count(df, data) %>%
     dplyr::mutate(total = sum(n)) %>%
