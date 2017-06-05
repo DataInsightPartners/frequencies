@@ -4,7 +4,7 @@
 #'    with counts and percentages of col2 within col1.
 #'    It answers the question, what percent of col1 is col2.
 #'
-#'   For example, if col1 was gender and col2 was ethnicity you would get the count of rate of
+#'   For example, if col1 was gender and col2 was ethnicity you would get the count and rate of
 #'   males that are asian, african american, hispanic, etc.
 #'
 #'   If col1 was ethnicity and col2 was gender you would get the count and rate of asians that are
@@ -19,11 +19,12 @@
 #' @return returns a list containing frequency tables split by col1_string with counts and rates of
 #'         col2_string.
 #' @export
-#' @importFrom dplyr "%>%"
+#' @importFrom dplyr "%>%" as_data_frame group_by
 #'
 #' @examples
 #' df <- data.frame(gender = sample(c('m','f'), 200, replace = TRUE),
-#'                  ethnicity = sample(c('african american', 'asian', 'caucasian', 'hispanic', 'other'),
+#'                  ethnicity = sample(c('african american', 'asian', 'caucasian',
+#'                                    'hispanic', 'other'),
 #'                                    200, replace = TRUE),
 #'                  stringsAsFactors = FALSE)
 #' freq_tbl2(df, gender, ethnicity, FALSE)
@@ -35,8 +36,31 @@
 #' ethnicity_by_gender$asian
 
 freq_tbl2 <- function(df, col1, col2, separate_tables = FALSE){
+
+  # To prevent NOTE from R CMD check 'no visible binding for global variable'
+  get.col1. = . = NULL
+
+  # Check that the df exists and is of type list.
+  if (!exists(deparse(substitute(df)))) return(stop('Data frame does not exist. Do not put df in quotes.'))
+  if (typeof(df) != 'list') {
+    type <- typeof(df)
+    err_message <- paste('df was of type "', type, '". Type "list" needed.', sep = '')
+    return(stop(err_message))
+  }
+
+  # Check that the columns exist.
   col1 <- deparse(substitute(col1))
   col2 <- deparse(substitute(col2))
+  if (!(col1 %in% names(df))) return(stop(paste(col1, 'not in df. Do not put col1 in quotes.')))
+  if (!(col2 %in% names(df))) return(stop(paste(col2, 'not in df. Do not put col2 in quotes.')))
+
+  if (!is.atomic(df[[col1]])) return(stop(paste(col1, 'is not an atomic vector.')))
+  if (!is.atomic(df[[col2]])) return(stop(paste(col2, 'is not an atomic vector.')))
+
+  # Check that separate_tables is logical
+  if (!is.logical(separate_tables) & !(separate_tables %in% c(0,1)))
+    return(stop('separate_tables was not logical. Need TRUE or FALSE'))
+
 
   result <- with(df, xtabs(~get(col1) + get(col2))) %>%
     as_data_frame(.) %>%
@@ -44,7 +68,9 @@ freq_tbl2 <- function(df, col1, col2, separate_tables = FALSE){
     dplyr::mutate(Percentage = round(n * 100 / sum(n), 1)) %>%
     dplyr::arrange(get.col1.)
 
-  if(separate_tables) {
+
+
+  if (separate_tables) {
     result <- split(result, result$get.col1.)
 
     for (n in 1:length(result)) {

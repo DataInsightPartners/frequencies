@@ -26,7 +26,7 @@ freq_tbl2 takes two columns from a data frame and returns a list containing freq
    It answers the question, what percent of col1 is col2.
 }
 \details{
-For example, if col1 was gender and col2 was ethnicity you would get the count of rate of
+For example, if col1 was gender and col2 was ethnicity you would get the count and rate of
   males that are asian, african american, hispanic, etc.
 
 If col1 was ethnicity and col2 was gender you would get the count and rate of asians that are
@@ -34,7 +34,8 @@ If col1 was ethnicity and col2 was gender you would get the count and rate of as
 }
 \examples{
 df <- data.frame(gender = sample(c('m','f'), 200, replace = TRUE),
-                 ethnicity = sample(c('african american', 'asian', 'caucasian', 'hispanic', 'other'),
+                 ethnicity = sample(c('african american', 'asian', 'caucasian',
+                                   'hispanic', 'other'),
                                    200, replace = TRUE),
                  stringsAsFactors = FALSE)
 freq_tbl2(df, gender, ethnicity, FALSE)

@@ -9,7 +9,7 @@ freq_tbl(data_vector, sort_by_count = FALSE, total_row = TRUE)
 \arguments{
 \item{data_vector}{an atomic vector of type character, integer, double, or logical}
 
-\item{sort_by_count}{a boolean value that determines if the output will be sorted by count or name}
+\item{sort_by_count}{boolean value that determines if output will be sorted by count or name}
 
 \item{total_row}{a boolean value that determines if the output will have a summary row appended}
 }
@@ -21,16 +21,16 @@ freq_tbl returns a frequency table with counts and percentages of values
   from an atomic vector of type character, integer, double, or logical
 }
 \examples{
-numbers <- numbers = sample(1:10, 200, replace = TRUE)
+numbers <- sample(1:10, 200, replace = TRUE)
 tbl <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
   letters = sample(letters, 200, replace = TRUE),
-  dates = sample(seq(as.Date('1999/10/01'), as.Date('2000/01/01'), by="day"), 200, replace = TRUE),
+  dates = sample(seq(as.Date('1999/10/01'), as.Date('2000/01/01'), by="day"),
+                 200, replace = TRUE),
   logicals = sample(c(TRUE, FALSE), 200, replace = TRUE),
   stringsAsFactors = FALSE)
 
 freq_tbl(numbers)
 freq_tbl(tbl$numbers)
-View(freq_tbl('tbl', 'letters'))
-View(freq_tbl('tbl', 'letters', sort_by_count = TRUE, total_row = FALSE))
+freq_tbl(tbl$letters, sort_by_count = TRUE, total_row = FALSE)
 freq_tbl(mtcars$cyl)
 }

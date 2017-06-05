@@ -4,7 +4,7 @@
 #'   from an atomic vector of type character, integer, double, or logical
 #'
 #' @param data_vector   an atomic vector of type character, integer, double, or logical
-#' @param sort_by_count   a boolean value that determines if the output will be sorted by count or name
+#' @param sort_by_count   boolean value that determines if output will be sorted by count or name
 #' @param total_row   a boolean value that determines if the output will have a summary row appended
 #'
 #' @return a data_frame containing the counts and percentages of each value from the provided data
@@ -12,21 +12,23 @@
 #' @importFrom dplyr "%>%"
 #'
 #' @examples
-#' numbers <- numbers = sample(1:10, 200, replace = TRUE)
+#' numbers <- sample(1:10, 200, replace = TRUE)
 #' tbl <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
 #'   letters = sample(letters, 200, replace = TRUE),
-#'   dates = sample(seq(as.Date('1999/10/01'), as.Date('2000/01/01'), by="day"), 200, replace = TRUE),
+#'   dates = sample(seq(as.Date('1999/10/01'), as.Date('2000/01/01'), by="day"),
+#'                  200, replace = TRUE),
 #'   logicals = sample(c(TRUE, FALSE), 200, replace = TRUE),
 #'   stringsAsFactors = FALSE)
 #'
 #' freq_tbl(numbers)
 #' freq_tbl(tbl$numbers)
-#' View(freq_tbl('tbl', 'letters'))
-#' View(freq_tbl('tbl', 'letters', sort_by_count = TRUE, total_row = FALSE))
+#' freq_tbl(tbl$letters, sort_by_count = TRUE, total_row = FALSE)
 #' freq_tbl(mtcars$cyl)
 
 freq_tbl <- function(data_vector, sort_by_count = FALSE, total_row = TRUE) {
 
+  # To prevent NOTE from R CMD check 'no visible binding for global variable'
+  data = n = total = Percentage = Cum. = NULL
 
   # Check validity of data_vector argument. The argument needs to be a string and the data frame needs to exist.
   if (!is.atomic(data_vector)) return(stop('freq_tbl requires an atomic vector.'))
