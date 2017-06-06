@@ -21,12 +21,12 @@ returns a list containing frequency tables split by col1_string with counts and 
         col2_string.
 }
 \description{
-freq_tbl2 takes two columns from a data frame and returns a list containing frequency tables
-   with counts and percentages of col2 within col1.
+freq_tbl2 takes two columns from a data frame and returns a data frame containing frequency
+   tables with counts and percentages of col2 within col1.
    It answers the question, what percent of col1 is col2.
 }
 \details{
-For example, if col1 was gender and col2 was ethnicity you would get the count and rate of
+As an example, if col1 was gender and col2 was ethnicity you would get the count and rate of
   males that are asian, african american, hispanic, etc.
 
 If col1 was ethnicity and col2 was gender you would get the count and rate of asians that are

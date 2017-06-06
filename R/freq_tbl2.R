@@ -1,10 +1,10 @@
 #' freq_tbl2
 #'
-#' freq_tbl2 takes two columns from a data frame and returns a list containing frequency tables
-#'    with counts and percentages of col2 within col1.
+#' freq_tbl2 takes two columns from a data frame and returns a data frame containing frequency
+#'    tables with counts and percentages of col2 within col1.
 #'    It answers the question, what percent of col1 is col2.
 #'
-#'   For example, if col1 was gender and col2 was ethnicity you would get the count and rate of
+#'   As an example, if col1 was gender and col2 was ethnicity you would get the count and rate of
 #'   males that are asian, african american, hispanic, etc.
 #'
 #'   If col1 was ethnicity and col2 was gender you would get the count and rate of asians that are
@@ -38,7 +38,7 @@
 freq_tbl2 <- function(df, col1, col2, separate_tables = FALSE){
 
   # To prevent NOTE from R CMD check 'no visible binding for global variable'
-  get.col1. = . = NULL
+  get.col1. = . = n = NULL
 
   # Check that the df exists and is of type list.
   if (!exists(deparse(substitute(df)))) return(stop('Data frame does not exist. Do not put df in quotes.'))
@@ -63,23 +63,23 @@ freq_tbl2 <- function(df, col1, col2, separate_tables = FALSE){
 
 
   result <- with(df, xtabs(~get(col1) + get(col2))) %>%
-    as_data_frame(.) %>%
-    group_by(get.col1.) %>%
+    dplyr::as_data_frame(.) %>%
+    dplyr::group_by(get.col1.) %>%
     dplyr::mutate(Percentage = round(n * 100 / sum(n), 1)) %>%
+    dplyr::ungroup() %>%
     dplyr::arrange(get.col1.)
 
+  # Put in try catch function. This converts the result vector class  to match original vector class.
+  result[,1] <- eval(parse(text = paste('as.', class(df[[col1]])[1], '(result$get.col1.)', sep = '')))
+  result[,2] <- eval(parse(text = paste('as.', class(df[[col2]])[1], '(result$get.col2.)', sep = '')))
 
+  colnames(result) <- c(col1, col2, 'Count', 'Percentage')
+  result <- dplyr::arrange_(result, col1, 'desc(Count)')
 
   if (separate_tables) {
-    result <- split(result, result$get.col1.)
-
-    for (n in 1:length(result)) {
-      colnames(result[[n]]) <- c(col1, col2, 'Count', 'Percentage')
-    }
+    result <- split(result, result[[col1]])
     return(result)
   } else {
-    colnames(result) <- c(col1, col2, 'Count', 'Percentage')
-
     return(result)
   }
 }

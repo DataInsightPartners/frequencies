@@ -21,8 +21,9 @@ freq_tbl returns a frequency table with counts and percentages of values
   from an atomic vector of type character, integer, double, or logical
 }
 \examples{
+# Sample vecctor and data frame to demo the freq_tbl function.
 numbers <- sample(1:10, 200, replace = TRUE)
-tbl <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
+tbl     <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
   letters = sample(letters, 200, replace = TRUE),
   dates = sample(seq(as.Date('1999/10/01'), as.Date('2000/01/01'), by="day"),
                  200, replace = TRUE),
