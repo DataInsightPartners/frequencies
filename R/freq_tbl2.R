@@ -69,9 +69,20 @@ freq_tbl2 <- function(df, col1, col2, separate_tables = FALSE){
     dplyr::ungroup() %>%
     dplyr::arrange(get.col1.)
 
-  # Put in try catch function. This converts the result vector class  to match original vector class.
-  result[,1] <- eval(parse(text = paste('as.', class(df[[col1]])[1], '(result$get.col1.)', sep = '')))
-  result[,2] <- eval(parse(text = paste('as.', class(df[[col2]])[1], '(result$get.col2.)', sep = '')))
+  # Converts the result vector class to match original vector class. This prevents
+  #  numbers and dates from being converted to characters so they can be sorted as intended.
+  tryCatch({
+    result[,1] <- eval(parse(text = paste('as.', class(df[[col1]])[1], '(result$get.col1.)', sep = '')))
+  }, error = function(e) {
+    print('Unable to convert col1 to original class.')
+  })
+  tryCatch({
+    result[,2] <- eval(parse(text = paste('as.', class(df[[col2]])[1], '(result$get.col2.)', sep = '')))
+  }, error = function(e) {
+    print('Unable to convert col2 to original class.')
+  })
+
+
 
   colnames(result) <- c(col1, col2, 'Count', 'Percentage')
   result <- dplyr::arrange_(result, col1, 'desc(Count)')
