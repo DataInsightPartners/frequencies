@@ -13,7 +13,7 @@
 #' @param df   a data frame
 #' @param col1   a column from the data frame to be aggregated at the higher level.
 #' @param col2   a column from the data frame to be aggregated within col1.
-#' @param separate_tables a boolean that decises if you want all aggregations in one data frame
+#' @param separate_tables a boolean that decides if you want all aggregations in one data frame
 #'   or split apart so each element of col1 gets it's own table; the default is FALSE
 #'
 #' @return returns a list containing frequency tables split by col1_string with counts and rates of
