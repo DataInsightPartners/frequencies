@@ -6,6 +6,8 @@ Authors@R: c(person("Nathan", "Trenholm", role = c("aut", "cre"),
                      email = "nathan@DataInsightPartners.com"))
 Author: Nathan Trenholm
 Maintainer: Nathan Trenholm <nathan@DataInsightPartners.com>
+URL: https://github.com/DataInsightPartners/frequencies
+BugReports: https://github.com/DataInsightPartners/frequencies/issues
 Description: These functions create frequency tables which display both counts
     and rates.
 Depends: R (>= 3.4.0)
