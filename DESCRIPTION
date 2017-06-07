@@ -4,7 +4,7 @@ Title: Create frequency tables with counts and rates
 Version: 0.1.1
 Authors@R: c(person("Nathan", "Trenholm", role = c("aut", "cre"),
                      email = "nathan@DataInsightPartners.com"))
-Author: Nathan Trenholm
+Author: Nathan Trenholm [aut, cre]
 Maintainer: Nathan Trenholm <nathan@DataInsightPartners.com>
 URL: https://github.com/DataInsightPartners/frequencies
 BugReports: https://github.com/DataInsightPartners/frequencies/issues
