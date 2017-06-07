@@ -13,7 +13,7 @@ freq_two_vects(df, col1, col2, separate_tables = FALSE)
 
 \item{col2}{a column from the data frame to be aggregated within col1.}
 
-\item{separate_tables}{a boolean that decises if you want all aggregations in one data frame
+\item{separate_tables}{a boolean that decides if you want all aggregations in one data frame
 or split apart so each element of col1 gets it's own table; the default is FALSE}
 }
 \value{
