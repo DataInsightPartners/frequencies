@@ -1,5 +1,5 @@
 library(frequencies)
-context("freq_tbl2")
+context("freq_two_vects")
 set.seed(1)
 tbl <<- data.frame(numbers = sample(1:3, 200, replace = TRUE),
                    letters = sample(letters[1:3], 200, replace = TRUE),
@@ -9,11 +9,11 @@ tbl <<- data.frame(numbers = sample(1:3, 200, replace = TRUE),
                    stringsAsFactors = FALSE)
 
 test_that("data exists",{
-  expect_error(freq_tbl2(nonexistant, nonexistant), "Data frame does not exist. Do not put df in quotes.")
-  expect_error(freq_tbl2(tbl, nonexistant), "nonexistant not in df. Do not put col1 in quotes.")
-  expect_error(freq_tbl2('tbl', nonexistant), "Data frame does not exist. Do not put df in quotes.")
-  expect_error(freq_tbl2(tbl, 'numbers'), '"numbers" not in df. Do not put col1 in quotes.')
-  expect_error(freq_tbl2(data.frame, nonexistant), 'df was of type "closure". Type "list" needed.')
+  expect_error(freq_two_vects(nonexistant, nonexistant), "Data frame does not exist. Do not put df in quotes.")
+  expect_error(freq_two_vects(tbl, nonexistant), "nonexistant not in df. Do not put col1 in quotes.")
+  expect_error(freq_two_vects('tbl', nonexistant), "Data frame does not exist. Do not put df in quotes.")
+  expect_error(freq_two_vects(tbl, 'numbers'), '"numbers" not in df. Do not put col1 in quotes.')
+  expect_error(freq_two_vects(data.frame, nonexistant), 'df was of type "closure". Type "list" needed.')
 })
 
 check_numbers_letters_f <- data.frame(numbers = c(1L, 1L, 1L, 2L, 2L),
@@ -41,10 +41,10 @@ check_letters_numbers_f <- data.frame(letters    = c('a', 'a', 'a', 'b', 'b'),
                                       stringsAsFactors = FALSE)
 
 test_that('numbers and letters aggregations are correct', {
-  expect_equal(freq_tbl2(tbl, numbers, letters, FALSE)[1:5,], check_numbers_letters_f)
-  expect_equal(freq_tbl2(tbl, numbers, letters, TRUE)[[1]],   check_numbers_letters_t1)
-  expect_equal(freq_tbl2(tbl, numbers, letters, TRUE)[[2]],   check_numbers_letters_t2)
-  expect_equal(freq_tbl2(tbl, letters, numbers, FALSE)[1:5,],  check_letters_numbers_f)
+  expect_equal(freq_two_vects(tbl, numbers, letters, FALSE)[1:5,], check_numbers_letters_f)
+  expect_equal(freq_two_vects(tbl, numbers, letters, TRUE)[[1]],   check_numbers_letters_t1)
+  expect_equal(freq_two_vects(tbl, numbers, letters, TRUE)[[2]],   check_numbers_letters_t2)
+  expect_equal(freq_two_vects(tbl, letters, numbers, FALSE)[1:5,],  check_letters_numbers_f)
 })
 
 check_dates_logicals_f <- data.frame(dates = as.Date(c('1999-10-01', '1999-10-01', '1999-10-02',
@@ -74,10 +74,10 @@ check_logicals_dates_f <- data.frame(logicals = c(FALSE, FALSE, FALSE, TRUE, TRU
                                      stringsAsFactors = FALSE)
 
 test_that('dates and logicals aggregations are correct', {
-  expect_equal(freq_tbl2(tbl, dates, logicals, FALSE)[1:5,], check_dates_logicals_f)
-  expect_equal(freq_tbl2(tbl, dates, logicals, TRUE)[[1]], check_dates_logicals_t1)
-  expect_equal(freq_tbl2(tbl, dates, logicals, TRUE)[[2]], check_dates_logicals_t2)
-  expect_equal(freq_tbl2(tbl, logicals, dates, FALSE)[1:5,], check_logicals_dates_f)
+  expect_equal(freq_two_vects(tbl, dates, logicals, FALSE)[1:5,], check_dates_logicals_f)
+  expect_equal(freq_two_vects(tbl, dates, logicals, TRUE)[[1]], check_dates_logicals_t1)
+  expect_equal(freq_two_vects(tbl, dates, logicals, TRUE)[[2]], check_dates_logicals_t2)
+  expect_equal(freq_two_vects(tbl, logicals, dates, FALSE)[1:5,], check_logicals_dates_f)
 })
 
 

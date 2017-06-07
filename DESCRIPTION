@@ -2,8 +2,10 @@ Package: frequencies
 Type: Package
 Title: Create frequency tables with counts and rates
 Version: 0.1.1
+Authors@R: c(person("Nathan", "Trenholm", role = c("aut", "cre"),
+                     email = "nathan@DataInsightPartners.com"))
 Author: Nathan Trenholm
-Maintainer: Nathan Trenholm <nathant23@gmail.com>
+Maintainer: Nathan Trenholm <nathan@DataInsightPartners.com>
 Description: These functions create frequency tables which display both counts
     and rates.
 Depends: R (>= 3.4.0)
@@ -13,3 +15,4 @@ License: GPL-3
 LazyData: TRUE
 RoxygenNote: 6.0.1
 Suggests: testthat
+

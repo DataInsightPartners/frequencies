@@ -1,5 +1,5 @@
 library(frequencies)
-context("freq_tbl")
+context("freq_vect")
 set.seed(1)
 tbl <<- data.frame(numbers = sample(1:10, 200, replace = TRUE),
                    letters = sample(letters, 200, replace = TRUE),
@@ -9,9 +9,9 @@ tbl <<- data.frame(numbers = sample(1:10, 200, replace = TRUE),
                    stringsAsFactors = FALSE)
 
 test_that("data exists",{
-  expect_error(freq_tbl(nonexistant), "object 'nonexistant' not found")
-  expect_error(freq_tbl('nonexistant'), "Vector needs a length greater than 1.")
-  expect_error(freq_tbl(list(c('character', 1L))), "freq_tbl requires an atomic vector.")
+  expect_error(freq_vect(nonexistant), "object 'nonexistant' not found")
+  expect_error(freq_vect('nonexistant'), "Vector needs a length greater than 1.")
+  expect_error(freq_vect(list(c('character', 1L))), "freq_vect requires an atomic vector.")
 })
 
 check_numbers_ff <- data.frame(data =       c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L),
@@ -47,10 +47,10 @@ check_numbers_tf <- data.frame(data =    c(8L, 5L, 4L, 3L, 7L, 9L, 6L, 2L, 10L, 
                                             100.0))
 
 test_that('numbers aggregations are correct', {
-  expect_equal(freq_tbl(tbl$numbers, FALSE, FALSE), check_numbers_ff)
-  expect_equal(freq_tbl(tbl$numbers, FALSE, TRUE),  check_numbers_ft)
-  expect_equal(freq_tbl(tbl$numbers, TRUE, TRUE),   check_numbers_tt)
-  expect_equal(freq_tbl(tbl$numbers, TRUE, FALSE),  check_numbers_tf)
+  expect_equal(freq_vect(tbl$numbers, FALSE, FALSE), check_numbers_ff)
+  expect_equal(freq_vect(tbl$numbers, FALSE, TRUE),  check_numbers_ft)
+  expect_equal(freq_vect(tbl$numbers, TRUE, TRUE),   check_numbers_tt)
+  expect_equal(freq_vect(tbl$numbers, TRUE, FALSE),  check_numbers_tf)
 
 })
 
@@ -89,10 +89,10 @@ check_letters_tf <- data.frame(data =    c('e', 'd', 'j', 'm', 'y', 'g', 'c', 'i
                              stringsAsFactors = FALSE)
 
 test_that('letters aggregations are correct', {
-  expect_equal(freq_tbl(tbl$letters, FALSE, FALSE)[1:10,],      check_letters_ff)
-  expect_equal(freq_tbl(tbl$letters, FALSE, TRUE)[c(1:10,27),], check_letters_ft)
-  expect_equal(freq_tbl(tbl$letters, TRUE, TRUE)[c(1:10,27),],  check_letters_tt)
-  expect_equal(freq_tbl(tbl$letters, TRUE, FALSE)[1:10,],       check_letters_tf)
+  expect_equal(freq_vect(tbl$letters, FALSE, FALSE)[1:10,],      check_letters_ff)
+  expect_equal(freq_vect(tbl$letters, FALSE, TRUE)[c(1:10,27),], check_letters_ft)
+  expect_equal(freq_vect(tbl$letters, TRUE, TRUE)[c(1:10,27),],  check_letters_tt)
+  expect_equal(freq_vect(tbl$letters, TRUE, FALSE)[1:10,],       check_letters_tf)
 })
 
 
@@ -134,10 +134,10 @@ check_dates_tf <- data.frame(data =    as.Date(c('1999-11-30', '1999-12-27', '19
                            stringsAsFactors = FALSE)
 
 test_that('dates aggregations are correct', {
-  expect_equal(freq_tbl(tbl$dates, FALSE, FALSE)[1:10,],      check_dates_ff)
-  expect_equal(freq_tbl(tbl$dates, FALSE, TRUE)[c(1:10,85),], check_dates_ft)
-  expect_equal(freq_tbl(tbl$dates, TRUE, TRUE)[c(1:10,85),],  check_dates_tt)
-  expect_equal(freq_tbl(tbl$dates, TRUE, FALSE)[1:10,],       check_dates_tf)
+  expect_equal(freq_vect(tbl$dates, FALSE, FALSE)[1:10,],      check_dates_ff)
+  expect_equal(freq_vect(tbl$dates, FALSE, TRUE)[c(1:10,85),], check_dates_ft)
+  expect_equal(freq_vect(tbl$dates, TRUE, TRUE)[c(1:10,85),],  check_dates_tt)
+  expect_equal(freq_vect(tbl$dates, TRUE, FALSE)[1:10,],       check_dates_tf)
 })
 
 
@@ -164,9 +164,9 @@ check_logicals_tf <- data.frame(data = c(FALSE, TRUE),
                               Cum. =       c(51.5, 100.0))
 
 test_that('logicals aggregations are correct', {
-  expect_equal(freq_tbl(tbl$logicals, FALSE, FALSE), check_logicals_ff)
-  expect_equal(freq_tbl(tbl$logicals, FALSE, TRUE),  check_logicals_ft)
-  expect_equal(freq_tbl(tbl$logicals, TRUE, TRUE),   check_logicals_tt)
-  expect_equal(freq_tbl(tbl$logicals, TRUE, FALSE),  check_logicals_tf)
+  expect_equal(freq_vect(tbl$logicals, FALSE, FALSE), check_logicals_ff)
+  expect_equal(freq_vect(tbl$logicals, FALSE, TRUE),  check_logicals_ft)
+  expect_equal(freq_vect(tbl$logicals, TRUE, TRUE),   check_logicals_tt)
+  expect_equal(freq_vect(tbl$logicals, TRUE, FALSE),  check_logicals_tf)
 })
 

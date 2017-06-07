@@ -1,6 +1,6 @@
-#' freq_tbl2
+#' freq_two_vects
 #'
-#' freq_tbl2 takes two columns from a data frame and returns a data frame containing frequency
+#' freq_two_vects takes two columns from a data frame and returns a data frame containing frequency
 #'    tables with counts and percentages of col2 within col1.
 #'    It answers the question, what percent of col1 is col2.
 #'
@@ -22,20 +22,22 @@
 #' @importFrom dplyr "%>%" as_data_frame group_by
 #'
 #' @examples
+#' # Sample data frame to demo the freq_two_vects function.
 #' df <- data.frame(gender = sample(c('m','f'), 200, replace = TRUE),
 #'                  ethnicity = sample(c('african american', 'asian', 'caucasian',
 #'                                    'hispanic', 'other'),
 #'                                    200, replace = TRUE),
 #'                  stringsAsFactors = FALSE)
-#' freq_tbl2(df, gender, ethnicity, FALSE)
-#' gender_by_ethnicity <- freq_tbl2(df, gender, ethnicity, TRUE)
+#'
+#' freq_two_vects(df, gender, ethnicity, FALSE)
+#' gender_by_ethnicity <- freq_two_vects(df, gender, ethnicity, TRUE)
 #' gender_by_ethnicity$m
-#' freq_tbl2(df, gender, ethnicity, TRUE)$m
-#' freq_tbl2(df, ethnicity, gender, FALSE)
-#' ethnicity_by_gender <- freq_tbl2(df, ethnicity, gender, TRUE)
+#' freq_two_vects(df, gender, ethnicity, TRUE)$m
+#' freq_two_vects(df, ethnicity, gender, FALSE)
+#' ethnicity_by_gender <- freq_two_vects(df, ethnicity, gender, TRUE)
 #' ethnicity_by_gender$asian
 
-freq_tbl2 <- function(df, col1, col2, separate_tables = FALSE){
+freq_two_vects <- function(df, col1, col2, separate_tables = FALSE){
 
   # To prevent NOTE from R CMD check 'no visible binding for global variable'
   get.col1. = . = n = NULL

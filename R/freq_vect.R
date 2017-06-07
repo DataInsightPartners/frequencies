@@ -1,6 +1,6 @@
-#' freq_tbl
+#' freq_vect
 #'
-#' freq_tbl returns a frequency table with counts and percentages of values
+#' freq_vect returns a frequency table with counts and percentages of values
 #'   from an atomic vector of type character, integer, double, or logical
 #'
 #' @param data_vector   an atomic vector of type character, integer, double, or logical
@@ -12,7 +12,7 @@
 #' @importFrom dplyr "%>%"
 #'
 #' @examples
-#' # Sample vecctor and data frame to demo the freq_tbl function.
+#' # Sample vector and data frame to demo the freq_vect function.
 #' numbers <- sample(1:10, 200, replace = TRUE)
 #' tbl     <- data.frame(numbers = sample(1:10, 200, replace = TRUE),
 #'   letters = sample(letters, 200, replace = TRUE),
@@ -21,18 +21,18 @@
 #'   logicals = sample(c(TRUE, FALSE), 200, replace = TRUE),
 #'   stringsAsFactors = FALSE)
 #'
-#' freq_tbl(numbers)
-#' freq_tbl(tbl$numbers)
-#' freq_tbl(tbl$letters, sort_by_count = TRUE, total_row = FALSE)
-#' freq_tbl(mtcars$cyl)
+#' freq_vect(numbers)
+#' freq_vect(tbl$numbers)
+#' freq_vect(tbl$letters, sort_by_count = TRUE, total_row = FALSE)
+#' freq_vect(mtcars$cyl)
 
-freq_tbl <- function(data_vector, sort_by_count = FALSE, total_row = TRUE) {
+freq_vect <- function(data_vector, sort_by_count = FALSE, total_row = TRUE) {
 
   # To prevent NOTE from R CMD check 'no visible binding for global variable'
   data = n = total = Percentage = Cum. = NULL
 
   # Check validity of data_vector argument. The argument needs to be a string and the data frame needs to exist.
-  if (!is.atomic(data_vector)) return(stop('freq_tbl requires an atomic vector.'))
+  if (!is.atomic(data_vector)) return(stop('freq_vect requires an atomic vector.'))
 
   if (!(typeof(data_vector) %in% c('logical', 'integer', 'double','character'))) {
     return(stop('Vector not of acceptable data type. Needs to be of type logical, integer, double, or character.'))
