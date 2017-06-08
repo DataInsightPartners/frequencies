@@ -1,6 +1,6 @@
 Package: frequencies
 Type: Package
-Title: Create frequency tables with counts and rates
+Title: Create Frequency Tables with Counts and Rates
 Version: 0.1.1
 Authors@R: c(person("Nathan", "Trenholm", role = c("aut", "cre"),
                      email = "nathan@DataInsightPartners.com"))
