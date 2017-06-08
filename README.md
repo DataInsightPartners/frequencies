@@ -1,5 +1,6 @@
-# frequencies
-
+# frequencies 
+[![Travis-CI Build Status](https://travis-ci.org/DataInsightPartners/frequencies.svg?branch=master)](https://travis-ci.org/DataInsightPartners/frequencies)  
+  
 An open-source (GPL-3) R package to create frequency tables which display both counts and rates. 
 All comments and ideas are welcome. Please submit any bugs to [Issues](https://github.com/DataInsightPartners/frequencies/issues)
 
