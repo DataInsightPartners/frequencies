@@ -8,7 +8,7 @@ Author: Nathan Trenholm [aut, cre]
 Maintainer: Nathan Trenholm <nathan@DataInsightPartners.com>
 URL: https://github.com/DataInsightPartners/frequencies
 BugReports: https://github.com/DataInsightPartners/frequencies/issues
-Description: These functions create frequency tables which display both counts
+Description: Provides functions to create frequency tables which display both counts
     and rates.
 Depends: R (>= 3.4.0)
 Imports:

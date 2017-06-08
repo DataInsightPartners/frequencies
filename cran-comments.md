@@ -1,3 +1,6 @@
+## Resubmission
+This is a resubmission. In this version I have updated the description to clearly articulate that this package provides functions to generate frequency tables.
+
 ## Test environments
 * local Windows 10 install, R 3.4.0
 * ubuntu 12.04.5 LTS (on travis-ci), R 3.4.0
